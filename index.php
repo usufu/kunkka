@@ -1,11 +1,14 @@
 <?php get_header(); ?>
 	<div id="primary">
 		<div id="postlist">
-			<?php if ( have_posts() ):while ( have_posts() ) : the_post();
+			<?php
+				$full_content = mutheme_settings( 'full-content' );
+
+			if ( have_posts() ):while ( have_posts() ) : the_post();
 				$post_thumbnail = mutheme_thumbnail( 'index-thumbnail', 260, 260 );
 				$post_class     = 'post';
 
-				if ( $post_thumbnail["exist"] ) {
+				if ( !$full_content && $post_thumbnail["exist"] ) {
 					$post_class .= ' post-has-thumbnail';
 				}
 				?>
@@ -14,14 +17,14 @@
 						<h2 class="post-title">
 							<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a>
 							<?php if ( is_sticky() ) { ?>
-								<span class="post-sticky">STICK</span>
+								<span class="post-sticky"><?php _e( 'Stick', MUTHEME_NAME ); ?></span>
 							<?php } ?>
 						</h2>
 					</div>
 					<div class="post-meta">
 						<ul class="inline-ul">
 							<li class="inline-li">
-								<?php the_time( 'Y/m/d' ); ?>
+								<?php echo mutheme_time_since( abs( strtotime( $post->post_date . "GMT" ) ) ); ?>
 							</li>
 							<li class="inline-li">
 								<span class="post-span">·</span>
@@ -34,29 +37,33 @@
 								<span class="post-span">·</span>
 							</li>
 							<li class="inline-li">
-								<?php comments_popup_link( '0 reply', '1 reply', '% replies' ); ?>
+								<?php comments_popup_link( __( '0 reply', MUTHEME_NAME ), __( '1 reply', MUTHEME_NAME ), __( '% replies', MUTHEME_NAME ) ); ?>
 							</li>
 							<?php mutheme_likes(); ?>
 						</ul>
 					</div>
 					<div class="post-body">
-						<?php if ( $post_thumbnail["exist"] ) : ?>
-							<div class="post-thumbnail">
-								<a href="<?php the_permalink() ?>" rel="bookmark">
-									<img class="lazy"
-									     src="<?php echo mutheme_cdn( mutheme_image( 'placeholder.png' ) ); ?>"
-									     data-original="<?php echo mutheme_cdn( $post_thumbnail ); ?>"
-									     alt="<?php the_title(); ?>" width="130" height="130"/>
-								</a>
-							</div>
-							<div class="post-content">
-								<?php printf( '<p>%s</p>', mutheme_excerpt( $post->post_content, 320 ) ); ?>
-							</div>
-						<?php else : ?>
-							<div class="post-content">
-								<?php printf( '<p>%s</p>', mutheme_excerpt( $post->post_content, 250 ) ); ?>
-							</div>
-						<?php endif; ?>
+						<?php if ( $full_content ) {
+							the_content();
+						} else {
+							if ( $post_thumbnail["exist"] ) : ?>
+								<div class="post-thumbnail">
+									<a href="<?php the_permalink() ?>" rel="bookmark">
+										<img class="lazy"
+										     src="<?php echo mutheme_cdn( mutheme_image( 'placeholder.png' ) ); ?>"
+										     data-original="<?php echo mutheme_cdn( $post_thumbnail ); ?>"
+										     alt="<?php the_title(); ?>" width="130" height="130"/>
+									</a>
+								</div>
+								<div class="post-content">
+									<?php printf( '<p>%s</p>', mutheme_excerpt( $post->post_content, 320 ) ); ?>
+								</div>
+							<?php else : ?>
+								<div class="post-content">
+									<?php printf( '<p>%s</p>', mutheme_excerpt( $post->post_content, 250 ) ); ?>
+								</div>
+							<?php endif;
+						} ?>
 					</div>
 				</div>
 			<?php endwhile; endif; ?>

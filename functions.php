@@ -12,8 +12,8 @@
  * Define constants
  */
 define( 'MUTHEME_NAME', 'Kunkka' );
-define( 'MUTHEME_VERSION', '1.0.2' );
-define( 'MUTHEME_PATH', dirname(__FILE__) );
+define( 'MUTHEME_VERSION', '1.0.3' );
+define( 'MUTHEME_PATH', dirname( __FILE__ ) );
 define( "MUTHEME_THEME_URL", get_bloginfo( 'template_directory' ) );
 
 /**
@@ -57,7 +57,9 @@ remove_action( 'wp_head', 'adjacent_posts_rel_link' );
 /**
  * Remove default wordpress widgets
  */
-add_action( 'widgets_init', 'mutheme_unregister_default_widgets', 1 );
+if( !mutheme_settings('register_widget') ){
+	add_action( 'widgets_init', 'mutheme_unregister_default_widgets', 1 );
+}
 function mutheme_unregister_default_widgets() {
 	unregister_widget( 'WP_Widget_Pages' );
 	unregister_widget( 'WP_Widget_Calendar' );
@@ -86,8 +88,8 @@ if ( function_exists( 'add_image_size' ) ) {
  */
 if ( function_exists( 'register_nav_menus' ) ) {
 	register_nav_menus( array(
-		'top-menu'    => __( '顶部菜单' ),
-		'global-menu' => __( '下拉菜单' )
+		'top-menu'    => __( 'Top menu', MUTHEME_NAME ),
+		'global-menu' => __( 'Dropdown menu', MUTHEME_NAME )
 	) );
 }
 
@@ -103,3 +105,8 @@ if ( function_exists( 'register_sidebar' ) ) {
 		'after_title'   => '</h1>'
 	) );
 }
+
+/**
+ * Register theme languages files
+ */
+load_theme_textdomain( MUTHEME_NAME, mutheme_path( 'languages' ) );

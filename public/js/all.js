@@ -20,8 +20,8 @@ jQuery(document).ready(function ($) {
     $('img.lazy,img.avatar').lazyload();
 
     if( bowser.mobile ){
-        $('.dropdown > a').on('touchstart', function (event) {
-            $(this).parent().hasClass('selected') ? $(this).parent().removeClass('selected') : $(this).parent().addClass('selected');
+        $('.mobile-menu-button').on('touchstart', function (event) {
+            $('body').hasClass('mobile-menu-open') ? $('body').removeClass('mobile-menu-open') : $('body').addClass('mobile-menu-open');
         });
     }else{
         var hstatus = false,

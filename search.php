@@ -1,9 +1,9 @@
 <?php get_header(); ?>
 	<div id="primary">
 		<div class="breadcrumb-navigation">
-			<a rel="bookmark" href="<?php echo home_url(); ?>">首页</a>
-			<span class="breadcrumb-arrow">></span>搜索关键词
-			<span class="breadcrumb-arrow">></span>
+			<a rel="bookmark" href="<?php echo home_url(); ?>"><?php _e( 'Home', MUTHEME_NAME ); ?></a>
+			<span class="breadcrumb-arrow"></span><?php _e( 'Search keyword', MUTHEME_NAME ); ?>
+			<span class="breadcrumb-arrow"></span>
 			<?php the_search_query(); ?>
 		</div>
 		<div id="postlist">

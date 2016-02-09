@@ -13,14 +13,19 @@
  */
 function mutheme_head() {
 	?>
-	<?php if ( is_home() ) { ?><title><?php bloginfo( 'name' ); ?> - <?php bloginfo( 'description' ); ?></title><?php } ?>
-	<?php if ( is_search() ) { ?><title><?php _e( 'Search&#34;' ); the_search_query(); echo "&#34;"; ?> - <?php bloginfo( 'name' ); ?></title><?php } ?>
-	<?php if ( is_single() ) { ?><title><?php echo trim( wp_title( '', 0 ) ); ?> - <?php bloginfo( 'name' ); ?></title><?php } ?>
+	<?php if ( is_home() ) { ?><title><?php bloginfo( 'name' ); ?>
+		- <?php bloginfo( 'description' ); ?></title><?php } ?>
+	<?php if ( is_search() ) { ?><title><?php _e( 'Search&#34;', MUTHEME_NAME );
+		the_search_query();
+		echo "&#34;"; ?> - <?php bloginfo( 'name' ); ?></title><?php } ?>
+	<?php if ( is_single() ) { ?><title><?php echo trim( wp_title( '', 0 ) ); ?>
+		- <?php bloginfo( 'name' ); ?></title><?php } ?>
 	<?php if ( is_author() ) { ?><title><?php wp_title( "" ); ?> - <?php bloginfo( 'name' ); ?></title><?php } ?>
 	<?php if ( is_archive() ) { ?><title><?php single_cat_title(); ?> - <?php bloginfo( 'name' ); ?></title><?php } ?>
 	<?php if ( is_year() ) { ?><title><?php the_time( 'Y' ); ?> - <?php bloginfo( 'name' ); ?></title><?php } ?>
 	<?php if ( is_month() ) { ?><title><?php the_time( 'F' ); ?> - <?php bloginfo( 'name' ); ?></title><?php } ?>
-	<?php if ( is_page() ) { ?><title><?php echo trim( wp_title( '', 0 ) ); ?> - <?php bloginfo( 'name' ); ?></title><?php } ?>
+	<?php if ( is_page() ) { ?><title><?php echo trim( wp_title( '', 0 ) ); ?>
+		- <?php bloginfo( 'name' ); ?></title><?php } ?>
 	<?php if ( is_404() ) { ?><title>404 - <?php bloginfo( 'name' ); ?></title><?php } ?>
 	<?php
 	global $post;
@@ -76,13 +81,17 @@ function mutheme_head() {
  */
 function mutheme_settings( $key ) {
 	$defaults = array(
-		'color'       => 'default',
-		'description' => '',
-		'keywords'    => '',
-		'tag_number'  => 25,
-		'avatar'      => 1,
-		'cdn'         => 0,
-		'thumbnail'   => 0
+		'color'                     => 'default',
+		'description'               => '',
+		'keywords'                  => '',
+		'tag_number'                => 25,
+		'avatar'                    => 1,
+		'cdn'                       => 0,
+		'thumbnail'                 => 0,
+		'register_widget'           => 0,
+		'fixed_navigation'          => 0,
+		'full-content'              => 0,
+		'disable_global_navigation' => 0
 	);
 
 	$settings = get_option( MUTHEME_NAME . '_settings' );
@@ -183,16 +192,16 @@ function mutheme_excerpt( $content, $limit = 100 ) {
  */
 function mutheme_time_since( $older_date, $comment_date = false ) {
 	$chunks = array(
-		array( 86400, '天前' ),
-		array( 3600, '小时前' ),
-		array( 60, '分钟前' ),
-		array( 1, '秒前' )
+		array( 24 * 60 * 60, __( ' days ago', MUTHEME_NAME ) ),
+		array( 60 * 60, __( ' hours ago', MUTHEME_NAME ) ),
+		array( 60, __( ' minutes ago', MUTHEME_NAME ) ),
+		array( 1, __( ' seconds ago', MUTHEME_NAME ) )
 	);
 
 	$newer_date = time();
 	$since      = abs( $newer_date - $older_date );
 
-	if ( $since < 2592000 ) {
+	if ( $since < 365 * 24 * 60 * 60 ) {
 		for ( $i = 0, $j = count( $chunks ); $i < $j; $i ++ ) {
 			$seconds = $chunks[ $i ][0];
 			$name    = $chunks[ $i ][1];
@@ -202,7 +211,7 @@ function mutheme_time_since( $older_date, $comment_date = false ) {
 		}
 		$output = $count . $name;
 	} else {
-		$output = ! $comment_date ? ( date( 'Y-m-j G:i', $older_date ) ) : ( date( 'Y-m-j', $older_date ) );
+		$output = $comment_date ? date( 'Y-m-d H:i', $older_date ) : date( 'Y-m-d', $older_date );
 	}
 
 	return $output;
@@ -213,11 +222,35 @@ function mutheme_time_since( $older_date, $comment_date = false ) {
  */
 function mutheme_views() {
 	if ( function_exists( 'the_views' ) ) {
+		global $post;
 		?>
 		<li class="inline-li"><span class="post-span">·</span></li>
-		<li class="inline-li"><?php the_views(); ?></li>
+		<li class="inline-li"><?php echo mutheme_views_count() . __( ' views', MUTHEME_NAME ); ?></li>
 	<?php
 	}
+}
+
+/**
+ * Post views count
+ *
+ * @param $post_id
+ *
+ * @return mixed|string
+ */
+function mutheme_views_count( $post_id = null ) {
+	global $post;
+
+	if ( ! $post_id ) {
+		$post_id = $post->ID;
+	}
+
+	$post_views = get_post_meta( $post_id, 'views', true );
+
+	if ( $post_views > 1000 ) {
+		$post_views = sprintf( "%.2fk", $post_views / 1000 );
+	}
+
+	return $post_views;
 }
 
 /**

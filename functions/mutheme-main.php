@@ -19,6 +19,10 @@ function mutheme_scripts() {
 	wp_enqueue_script( 'jquery', false, false, '1.8.2' );
 
 	wp_enqueue_script( 'kunkka-all', mutheme_script( 'all.js' ), null, MUTHEME_VERSION, false );
+
+	if( is_page_template( 'templates/archives.php' ) ){
+		wp_enqueue_script( 'kunkka-archives', mutheme_script( 'archives.js' ), null, MUTHEME_VERSION, false );
+	}
 }
 
 // Theme setting part

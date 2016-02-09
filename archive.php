@@ -1,13 +1,21 @@
 <?php get_header(); ?>
 	<div id="primary">
 		<div class="breadcrumb-navigation">
-			<a rel="bookmark" href="<?php echo home_url(); ?>">首页</a>
+			<a rel="bookmark" href="<?php echo home_url(); ?>"
+			   title="<?php bloginfo( 'name' ); ?>"><?php _e( 'Home', MUTHEME_NAME ); ?></a>
 			<?php the_post(); ?>
-			<?php if ( is_category() ) : ?>
-				<?php printf( ( __( '<span class="breadcrumb-arrow">></span>分类<span class="breadcrumb-arrow">></span>%s' ) ), single_cat_title( '', false ) ); ?>
-			<?php elseif ( is_tag() ) : ?>
-				<?php printf( ( __( '<span class="breadcrumb-arrow">></span>标签<span class="breadcrumb-arrow">></span>%s' ) ), single_tag_title( '', false ) ); ?>
-			<?php endif; ?>
+			<?php if ( is_category() ) {
+				?>
+				<span class="breadcrumb-arrow"></span><?php _e( 'Category', MUTHEME_NAME ); ?><span
+					class="breadcrumb-arrow"></span>
+			<?php
+			} else if ( is_tag() ) {
+				?>
+				<span class="breadcrumb-arrow"></span><?php _e( 'Tag', MUTHEME_NAME ); ?><span
+					class="breadcrumb-arrow"></span>
+			<?php
+			} ?>
+			<?php echo single_cat_title( '', false ); ?>
 			<?php rewind_posts(); ?>
 		</div>
 		<div id="postlist">
@@ -32,20 +40,20 @@
 					<div class="post-meta">
 						<ul class="inline-ul">
 							<li class="inline-li">
-								<?php the_time( 'Y/m/d' ); ?>
+								<?php echo mutheme_time_since(abs(strtotime($post->post_date. "GMT")));?>
 							</li>
 							<li class="inline-li">
-								<span class="post-span">|</span>
+								<span class="post-span">·</span>
 							</li>
 							<li class="inline-li">
 								<?php the_category( ' , ' ); ?>
 							</li>
 							<?php mutheme_views(); ?>
 							<li class="inline-li">
-								<span class="post-span">|</span>
+								<span class="post-span">·</span>
 							</li>
 							<li class="inline-li">
-								<?php comments_popup_link( '0 reply', '1 reply', '% replies' ); ?>
+								<?php comments_popup_link( __('0 reply', MUTHEME_NAME), __('1 reply', MUTHEME_NAME), __('% replies', MUTHEME_NAME) ); ?>
 							</li>
 							<?php mutheme_likes(); ?>
 						</ul>
@@ -70,7 +78,8 @@
 						<?php endif; ?>
 					</div>
 				</div>
-			<?php endwhile; endif; ?>
+			<?php endwhile;
+			endif; ?>
 		</div>
 		<div class="pagenavi">
 			<?php mutheme_pagenavi(); ?>

@@ -116,16 +116,104 @@ Description: 主题问题或建议可以联系, QQ群: 205883766, 邮箱: mufeng
     content: "\f17b"
 }
 
-.mutheme-icon-list li{
+.mutheme-twitter:before {
+    content: "\f099"
+}
+
+.mutheme-github:before {
+    content: "\f09b"
+}
+
+.mutheme-feed:before {
+    content: "\f09e"
+}
+
+.mutheme-tablet:before {
+    content: "\f10a"
+}
+
+.mutheme-mobile:before {
+    content: "\f10b"
+}
+
+.mutheme-linux:before {
+    content: "\f17c"
+}
+
+.mutheme-dribbble:before {
+    content: "\f17d"
+}
+
+.mutheme-weibo:before {
+    content: "\f18a"
+}
+
+.mutheme-wordpress:before {
+    content: "\f19a"
+}
+
+.mutheme-qq:before {
+    content: "\f1d6"
+}
+
+.mutheme-wechat:before {
+    content: "\f1d7"
+}
+
+.mutheme-facebook:before {
+    content: "\f230"
+}
+
+.mutheme-safari:before {
+    content: "\f267"
+}
+
+.mutheme-chrome:before {
+    content: "\f268"
+}
+
+.mutheme-firefox:before {
+    content: "\f269"
+}
+
+.mutheme-opera:before {
+    content: "\f26a"
+}
+
+.mutheme-ie:before {
+    content: "\f26b"
+}
+
+.mutheme-edge:before {
+    content: "\f282"
+}
+
+.mutheme-download:before {
+    content: "\e609"
+}
+
+.mutheme-email:before {
+    content: "\e60b"
+}
+
+.mutheme-tag:before {
+    content: "\e602"
+}
+
+.mutheme-comment:before {
+    content: "\e60c"
+}
+
+.mutheme-icon-list li {
     display: inline-block;
     width: 19.1%;
     margin-bottom: 10px;
 }
 
-.about-wrap .feature-section{
+.about-wrap .feature-section {
     padding-bottom: 20px;
 }
 
-code{
+code {
     background: #fafafa;
 }

@@ -1,8 +1,8 @@
 <?php get_header(); ?>
 <div id="primary">
 	<div id="postlist">
-		<p>页面出错或者没有此页面</p>
-		<p>你也可以试着通过上方的搜索找到你想要看到的文章！</p>
+		<p><?php _e('The page not found or not this page', MUTHEME_NAME);?></p>
+		<p><?php _e('You can also try to search the post!', MUTHEME_NAME);?></p>
 	</div>
 </div>
 <?php get_sidebar();?>

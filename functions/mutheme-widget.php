@@ -20,7 +20,7 @@ class Mutheme_widget_populars extends WP_Widget {
 		$limit = $limit ? $limit : 10;
 		?>
 		<div class="widget widget-populars">
-			<h3>热门文章</h3>
+			<h3><?php _e( 'Popular posts', MUTHEME_NAME ); ?></h3>
 			<ul class="list">
 				<?php
 				$args  = array(
@@ -38,9 +38,9 @@ class Mutheme_widget_populars extends WP_Widget {
 						<p>
 							<a href="<?php the_permalink() ?>" rel="bookmark"
 							   title="<?php the_title(); ?>"><?php the_title(); ?></a>
-								<span>[<?php if ( function_exists( 'the_views' ) ) {
-										the_views();
-									} ?>]</span>
+							<?php if ( function_exists( 'the_views' ) ) { ?>
+								<span><?php echo mutheme_views_count(); ?></span>
+							<?php } ?>
 						</p>
 					</li>
 				<?php endwhile;
@@ -95,7 +95,7 @@ class Mutheme_widget_modified extends WP_Widget {
 		$limit = $limit ? $limit : 8;
 		?>
 		<div class="widget widget-modified">
-			<h3>最近更新的文章</h3>
+			<h3><?php _e( 'Last modified posts', MUTHEME_NAME ); ?></h3>
 			<ul class="list">
 				<?php
 				$args  = array(
@@ -115,7 +115,8 @@ class Mutheme_widget_modified extends WP_Widget {
 						</p>
 
 						<p>
-							更新时间：<span><?php echo mutheme_time_since( abs( strtotime( $posts[ $index ]->post_modified_gmt ) ) ); ?></span>
+							<?php _e( 'Update time：', MUTHEME_NAME ); ?>
+							<span><?php echo mutheme_time_since( abs( strtotime( $posts[ $index ]->post_modified_gmt ) ) ); ?></span>
 						</p>
 					</li>
 					<?php $index ++; endwhile;
@@ -170,7 +171,7 @@ class Mutheme_widget_comment extends WP_Widget {
 		$limit = $limit ? $limit : 10;
 		?>
 		<div class="widget widget-comment">
-			<h3>最新评论</h3>
+			<h3><?php _e( 'Latest comments', MUTHEME_NAME ); ?></h3>
 			<ul class="list">
 				<?php
 				$comments = get_comments( "user_id=0&number={$limit}&status=approve&type=comment" );
@@ -185,8 +186,9 @@ class Mutheme_widget_comment extends WP_Widget {
 						</p>
 
 						<p>
+							<?php echo get_avatar( $comment->comment_author_email, 32 ); ?>
 							<?php echo $comment->comment_author; ?>
-							<span><?php echo $comment->comment_date; ?></span>
+							<span><?php echo mutheme_time_since( strtotime( $comment->comment_date . "GMT" ) ); ?></span>
 						</p>
 					</li>
 				<?php

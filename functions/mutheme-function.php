@@ -8,19 +8,19 @@
  * @package     Kunkka
  **/
 
- // Add theme toolbar link
- add_action('admin_bar_menu', 'mutheme_toolbar_link', 999);
-function mutheme_toolbar_link($wp_admin_bar) {
+// Add theme toolbar link
+add_action( 'admin_bar_menu', 'mutheme_toolbar_link', 999 );
+function mutheme_toolbar_link( $wp_admin_bar ) {
 	$args = array(
-			'title' => 'Kunkka 设置', 
-			'href' => admin_url('admin.php?page=mutheme_setting'),
-			'meta' => array(
-				'title' => 'Kunkka 设置'
-			)
-		);
-	$wp_admin_bar->add_node($args);
-} 
- 
+		'title' => 'Kunkka 设置',
+		'href'  => admin_url( 'admin.php?page=mutheme_setting' ),
+		'meta'  => array(
+			'title' => 'Kunkka 设置'
+		)
+	);
+	$wp_admin_bar->add_node( $args );
+}
+
 /**
  * Theme comment walker
  *
@@ -49,22 +49,22 @@ function mutheme_comment( $comment, $args, $depth ) {
 					<span class="comment-floor"><?php ++ $commentcount;
 						switch ( $commentcount ) {
 							case 1:
-								print_r( "沙发" );
+								_e( 'Sofa', MUTHEME_NAME );
 								break;
 							case 2:
-								print_r( "板凳" );
+								_e( 'Bench', MUTHEME_NAME );
 								break;
 							case 3:
-								print_r( "地板" );
+								_e( 'Floor', MUTHEME_NAME );
 								break;
 							default:
-								printf( __( '%s楼' ), $commentcount );
+								printf( __( '%s Floor', MUTHEME_NAME ), $commentcount );
 						} ?></span>
 
 			<div class="comment-data">
 				<span class="comment-span <?php if ( $comment->user_id == 1 ) {
 					echo "comment-author";
-				} ?>"><?php printf( __( '%s' ), get_comment_author_link() ) ?></span>
+				} ?>"><?php printf( '%s', get_comment_author_link() ) ?></span>
 				<span
 					class="comment-span comment-date"><?php echo mutheme_time_since( abs( strtotime( $comment->comment_date_gmt . "GMT" ) ), true ); ?></span>
 			</div>
@@ -72,7 +72,7 @@ function mutheme_comment( $comment, $args, $depth ) {
 			<div class="comment-reply"><?php comment_reply_link( array_merge( $args, array(
 					'depth'      => $depth,
 					'max_depth'  => $args['max_depth'],
-					'reply_text' => __( '回复' )
+					'reply_text' => __( 'Reply', MUTHEME_NAME )
 				) ) ) ?></div>
 		</div>
 	<?php } else {
@@ -84,7 +84,7 @@ function mutheme_comment( $comment, $args, $depth ) {
 				class="comment-floor"><?php comment_reply_link( array_merge( $args, array(
 					'depth'      => $depth,
 					'max_depth'  => $args['max_depth'],
-					'reply_text' => __( '回复' )
+					'reply_text' => __( 'Reply', MUTHEME_NAME )
 				) ) ) ?></span>
 
 			<div class="comment-data">
@@ -94,7 +94,7 @@ function mutheme_comment( $comment, $args, $depth ) {
 					<?php
 					$parent_id      = $comment->comment_parent;
 					$comment_parent = get_comment( $parent_id );
-					printf( __( '%s' ), get_comment_author_link() );
+					printf( '%s', get_comment_author_link() );
 					?>
 				</span>
 				<span
@@ -125,4 +125,20 @@ function mutheme_avatar( $avatar ) {
 	}
 
 	return $avatar;
+}
+
+/**
+ * Theme body class
+ */
+function mutheme_body_class()
+{
+	$extra_class = array(mutheme_settings( 'color' ));
+
+	if( mutheme_settings( 'full-content' ) ){
+		$extra_class[] = 'full-content';
+	}
+
+	$extra_class = implode(' ', $extra_class);
+
+	body_class($extra_class);
 }

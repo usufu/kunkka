@@ -67,6 +67,22 @@ class Mutheme_settings {
 				),
 				'label' => false
 			),
+			/*array(
+				'title' => '导航栏',
+				'key'   => 'fixed_navigation',
+				'type'  => 'checkbox',
+				'value' => 1,
+				'text'  => '固定头部导航栏',
+				'label' => '勾选后，导航栏将会固定在头部'
+			),*/
+			array(
+				'title' => '导航菜单',
+				'key'   => 'disable_global_navigation',
+				'type'  => 'checkbox',
+				'value' => 1,
+				'text'  => '禁用导航菜单',
+				'label' => '勾选后，禁止使用下拉导航菜单'
+			),
 			array(
 				'title' => '缩略图',
 				'key'   => 'thumbnail',
@@ -74,6 +90,22 @@ class Mutheme_settings {
 				'value' => 1,
 				'text'  => '只显示特色图片',
 				'label' => '勾选后，首页和归档页面只显示特色图片的缩略图，文章中插入的图片缩略图将不会显示'
+			),
+			array(
+				'title' => '默认小工具',
+				'key'   => 'register_widget',
+				'type'  => 'checkbox',
+				'value' => 1,
+				'text'  => '开启默认小工具',
+				'label' => '默认禁用 Wordpress 自带的小工具, 勾选后，开启默认小工具'
+			),
+			array(
+				'title' => '首页、分类内容',
+				'key'   => 'full-content',
+				'type'  => 'checkbox',
+				'value' => 1,
+				'text'  => '显示全文',
+				'label' => '默认首页、分类页显示摘要, 勾选后，开启后显示全文'
 			)
 		);
 
@@ -198,7 +230,29 @@ class Mutheme_settings {
 								'mutheme-video',
 								'mutheme-apple',
 								'mutheme-windows',
-								'mutheme-android'
+								'mutheme-android',
+								'mutheme-twitter',
+								'mutheme-github',
+								'mutheme-feed',
+								'mutheme-tablet',
+								'mutheme-mobile',
+								'mutheme-linux',
+								'mutheme-dribbble',
+								'mutheme-weibo',
+								'mutheme-wordpress',
+								'mutheme-qq',
+								'mutheme-wechat',
+								'mutheme-facebook',
+								'mutheme-safari',
+								'mutheme-chrome',
+								'mutheme-firefox',
+								'mutheme-opera',
+								'mutheme-ie',
+								'mutheme-edge',
+								'mutheme-download',
+								'mutheme-email',
+								'mutheme-tag',
+								'mutheme-comment'
 							);
 
 							foreach ( $icon_arr as $key => $val ) {
@@ -268,7 +322,6 @@ class Mutheme_settings {
 		$config = array(
 			'domain'       => MUTHEME_NAME,           // Text domain - likely want to be the same as your theme.
 			'default_path' => '',                          // Default absolute path to pre-packaged plugins
-			'menu'         => 'install-required-plugins',  // Menu slug
 			'has_notices'  => true,                        // Show admin notices or not
 			'is_automatic' => true,                        // Automatically activate plugins after installation or not
 			'message'      => '',                          // Message to output right before the plugins table
