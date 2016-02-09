@@ -95,8 +95,6 @@ class ThemeUpdateChecker {
 		//Send the request.
 		$result = wp_remote_get($url, $options);
 		
-		var_dump($url, $options);
-		
 		//Try to parse the response
 		$themeUpdate = null;
 		$code = wp_remote_retrieve_response_code($result);

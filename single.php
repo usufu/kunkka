@@ -1,5 +1,11 @@
 <?php get_header(); ?>
 	<div id="primary">
+		<div class="breadcrumb-navigation">
+			<a rel="bookmark" href="<?php echo home_url(); ?>">首页</a>
+			<?php the_post(); ?>
+			<span class="breadcrumb-arrow">></span><?php if($category=get_the_category($post->ID)) echo (get_category_parents($category[0]->term_id, TRUE, '<span class="breadcrumb-arrow">></span>')); ?><?php the_title(); ?>
+			<?php rewind_posts(); ?>
+		</div>
 		<?php if ( have_posts() ):while ( have_posts() ) : the_post(); ?>
 			<div id="post-<?php the_ID(); ?>" class="single-post">
 				<div class="post-header">

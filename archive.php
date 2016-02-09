@@ -1,11 +1,12 @@
 <?php get_header(); ?>
 	<div id="primary">
-		<div class="post-compass">
+		<div class="breadcrumb-navigation">
+			<a rel="bookmark" href="<?php echo home_url(); ?>">首页</a>
 			<?php the_post(); ?>
 			<?php if ( is_category() ) : ?>
-				<?php printf( ( __( '<p>分类「%s」的所有文章</p>' ) ), single_cat_title( '', false ) ); ?>
+				<?php printf( ( __( '<span class="breadcrumb-arrow">></span>分类<span class="breadcrumb-arrow">></span>%s' ) ), single_cat_title( '', false ) ); ?>
 			<?php elseif ( is_tag() ) : ?>
-				<?php printf( ( __( '<p>标签「%s」的所有文章</p>' ) ), single_tag_title( '', false ) ); ?>
+				<?php printf( ( __( '<span class="breadcrumb-arrow">></span>标签<span class="breadcrumb-arrow">></span>%s' ) ), single_tag_title( '', false ) ); ?>
 			<?php endif; ?>
 			<?php rewind_posts(); ?>
 		</div>

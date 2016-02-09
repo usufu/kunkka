@@ -3,7 +3,7 @@
 <head>
 	<?php mutheme_head(); ?>
 </head>
-<body <?php body_class(); ?>>
+<body <?php body_class(mutheme_settings('color')); ?>>
 <div id="header">
 	<div class="container clearfix">
 		<h2 class="logo">

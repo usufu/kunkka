@@ -1,9 +1,10 @@
 <?php get_header(); ?>
 	<div id="primary">
-		<div class="post-compass">
-			<p>
-				搜索关键词「<?php the_search_query(); ?>」的所有文章
-			</p>
+		<div class="breadcrumb-navigation">
+			<a rel="bookmark" href="<?php echo home_url(); ?>">首页</a>
+			<span class="breadcrumb-arrow">></span>搜索关键词
+			<span class="breadcrumb-arrow">></span>
+			<?php the_search_query(); ?>
 		</div>
 		<div id="postlist">
 			<?php if ( have_posts() ):while ( have_posts() ) : the_post();

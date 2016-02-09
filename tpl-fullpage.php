@@ -1,5 +1,9 @@
-<?php get_header(); ?>
-	<div id="primary">
+<?php
+/*
+Template Name: Fullpage 全宽页面
+*/
+get_header(); ?>
+	<div id="primary" class="full-page">
 		<?php if ( have_posts() ):while ( have_posts() ) : the_post(); ?>
 			<div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 				<div class="post-header">
@@ -14,5 +18,4 @@
 		<?php comments_template(); ?>
 	</div>
 	<!-- #primary -->
-<?php get_sidebar(); ?>
 <?php get_footer(); ?>

@@ -76,12 +76,13 @@ function mutheme_head() {
  */
 function mutheme_settings( $key ) {
 	$defaults = array(
-		'color' => 'default',
+		'color'       => 'default',
 		'description' => '',
-		'keywords' => '',
-		'tag_number' => 25,
-		'avatar' => 1,
-		'cdn' => 0
+		'keywords'    => '',
+		'tag_number'  => 25,
+		'avatar'      => 1,
+		'cdn'         => 0,
+		'thumbnail'   => 0
 	);
 
 	$settings = get_option( MUTHEME_NAME . '_settings' );
@@ -251,8 +252,8 @@ function mutheme_thumbnail( $type = 'full', $width = 0, $height = 0 ) {
 	);
 
 	$size_array = array(
-		'full'             => array( $width, $height ),
-		'index-thumbnail'  => array( 260, 260 )
+		'full'            => array( $width, $height ),
+		'index-thumbnail' => array( 260, 260 )
 	);
 	
 	if ( has_post_thumbnail() ) {
@@ -266,7 +267,7 @@ function mutheme_thumbnail( $type = 'full', $width = 0, $height = 0 ) {
 			$result['crop'] = false;
 		}
 
-	} else {
+	} else if ( ! mutheme_settings( 'thumbnail' ) ) {
 		ob_start();
 		ob_end_clean();
 

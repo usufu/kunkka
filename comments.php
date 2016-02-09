@@ -23,8 +23,8 @@
 				<?php if ( 'open' != $post->comment_status ) : ?>
 					<h2 class="comments-title">Comments Closed.</h2>
 				<?php else : ?>
-					<h2 class="comments-title">Leave a reply</h2>
 					<div class="comment-topnav"><?php paginate_comments_links( 'prev_text=«&next_text=»' ); ?></div>
+					<h2 class="comments-title">Leave a reply</h2>
 				<?php endif; ?>
 			</div>
 		</div>
@@ -35,7 +35,7 @@
 	<?php endif; ?>
 	<?php if ( comments_open() ) : ?>
 		<div id="respond" class="respond">
-		<form method="post" action="" id="comment_form">
+		<form method="post" action="<?php echo site_url('wp-comments-post.php');?>" id="comment_form">
 		<div id="cancel-comment-reply"><?php cancel_comment_reply_link() ?></div>
 		<?php if ( get_option( 'comment_registration' ) && ! is_user_logged_in() ) : ?>
 			<p class="title welcome"><?php printf( __( '你需要 <a href="%s">登录</a> 才可以回复.' ), wp_login_url( get_permalink() ) ); ?></p>
@@ -82,7 +82,7 @@
 				</div>
 			<?php endif; ?>
 			<div id="author_textarea">
-				<textarea name="comment" id="comment" class="textarea" rows="5" tabindex="4"
+				<textarea name="comment" id="comment" class="textarea" rows="4" tabindex="4"
 				          onkeydown="if(event.ctrlKey&&event.keyCode==13){document.getElementById('submit').click();return false};"></textarea>
 			</div>
 			<p><input id="submit" type="submit" name="submit" value="<?php _e( '确认提交 / Ctrl+Enter' ); ?>"

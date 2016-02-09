@@ -14,6 +14,18 @@ class Mutheme_settings {
 	public function __construct() {
 		$this->defaults = array(
 			array(
+				'title' => '主题配色',
+				'key'   => 'color',
+				'type'  => 'radio',
+				'value' => array(
+					'default' => '默认',
+					'red'     => '新年红',
+					'blue'    => '理工蓝',
+					'green'   => '青葱绿'
+				),
+				'label' => false
+			),
+			array(
 				'title' => '网站描述',
 				'key'   => 'description',
 				'type'  => 'textarea',
@@ -54,6 +66,14 @@ class Mutheme_settings {
 					1 => '多说'
 				),
 				'label' => false
+			),
+			array(
+				'title' => '缩略图',
+				'key'   => 'thumbnail',
+				'type'  => 'checkbox',
+				'value' => 1,
+				'text'  => '只显示特色图片',
+				'label' => '勾选后，首页和归档页面只显示特色图片的缩略图，文章中插入的图片缩略图将不会显示'
 			)
 		);
 
@@ -131,7 +151,7 @@ class Mutheme_settings {
 	public function help() {
 		wp_enqueue_style( 'mutheme-help', mutheme_style( 'help.css' ) );
 		?>
-		<div class="wrap about-wrap">
+		<div class="wrap">
 			<h1>欢迎使用<?php echo MUTHEME_NAME . ' ' . MUTHEME_VERSION; ?></h1>
 
 			<div class="about-text">主题问题或建议可加入QQ群:205883766</div>
@@ -141,7 +161,7 @@ class Mutheme_settings {
 						<h3>功能说明</h3>
 
 						<p>
-							主题Gavatar头像默认采用多说源，可在后台关闭；主题提供了三个侧边栏小工具（最新文章、最新评论、热门文章）；禁止加载Google Fonts，关闭了Wordpress
+							主题提供四种颜色（默认、新年红、理工蓝、青葱绿）以供选择，Gavatar头像默认采用多说源，可在后台关闭；主题提供了三个侧边栏小工具（最新文章、最新评论、热门文章）；禁止加载Google Fonts，关闭了Wordpress
 							默认要输出的 head 部分功能，推荐使用七牛云加速会有更好的体验；本主题支持后台更新。
 						</p>
 

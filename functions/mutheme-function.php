@@ -8,6 +8,19 @@
  * @package     Kunkka
  **/
 
+ // Add theme toolbar link
+ add_action('admin_bar_menu', 'mutheme_toolbar_link', 999);
+function mutheme_toolbar_link($wp_admin_bar) {
+	$args = array(
+			'title' => 'Kunkka 设置', 
+			'href' => admin_url('admin.php?page=mutheme_setting'),
+			'meta' => array(
+				'title' => 'Kunkka 设置'
+			)
+		);
+	$wp_admin_bar->add_node($args);
+} 
+ 
 /**
  * Theme comment walker
  *
