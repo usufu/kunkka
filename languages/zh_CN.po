@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Kunkka\n"
-"POT-Creation-Date: 2016-02-09 14:24+0800\n"
-"PO-Revision-Date: 2016-02-09 14:24+0800\n"
+"POT-Creation-Date: 2016-02-11 09:16+0800\n"
+"PO-Revision-Date: 2016-02-11 09:16+0800\n"
 "Last-Translator: \n"
 "Language-Team: mufeng <mufeng.me@gmail.com>\n"
 "Language: zh_CN\n"
@@ -36,15 +36,15 @@ msgstr "分类"
 msgid "Tag"
 msgstr "标签"
 
-#: archive.php:56 index.php:37 single.php:31
+#: archive.php:56 index.php:40 single.php:31
 msgid "0 reply"
 msgstr "0 回复"
 
-#: archive.php:56 index.php:37 single.php:31
+#: archive.php:56 index.php:40 single.php:31
 msgid "1 reply"
 msgstr "1 回复"
 
-#: archive.php:56 index.php:37 single.php:31
+#: archive.php:56 index.php:40 single.php:31
 msgid "% replies"
 msgstr "% 回复"
 
@@ -321,23 +321,23 @@ msgstr ""
 msgid "Search&#34;"
 msgstr ""
 
-#: functions/mutheme-basic.php:193
+#: functions/mutheme-basic.php:195
 msgid " days ago"
 msgstr " 天前"
 
-#: functions/mutheme-basic.php:194
+#: functions/mutheme-basic.php:196
 msgid " hours ago"
 msgstr " 小时前"
 
-#: functions/mutheme-basic.php:195
+#: functions/mutheme-basic.php:197
 msgid " minutes ago"
 msgstr " 分钟前"
 
-#: functions/mutheme-basic.php:196
+#: functions/mutheme-basic.php:198
 msgid " seconds ago"
 msgstr " 秒前"
 
-#: functions/mutheme-basic.php:226
+#: functions/mutheme-basic.php:228
 msgid " views"
 msgstr " 阅读"
 
@@ -362,36 +362,36 @@ msgstr "%s 楼"
 msgid "Reply"
 msgstr "回复"
 
-#: functions/mutheme-settings.php:152
+#: functions/mutheme-settings.php:176
 msgid "Save Changes"
 msgstr "保存设置"
 
-#: functions/mutheme-settings.php:306
+#: functions/mutheme-settings.php:329
 msgid "安装推荐插件"
 msgstr ""
 
-#: functions/mutheme-settings.php:307
+#: functions/mutheme-settings.php:330
 msgid "安装插件"
 msgstr ""
 
-#: functions/mutheme-settings.php:308
+#: functions/mutheme-settings.php:331
 #, php-format
 msgid "正在安装插件: %s"
 msgstr ""
 
-#: functions/mutheme-settings.php:310
+#: functions/mutheme-settings.php:333
 msgid "出错了."
 msgstr ""
 
-#: functions/mutheme-settings.php:329
+#: functions/mutheme-settings.php:352
 msgid "继续安装推荐插件。"
 msgstr ""
 
-#: functions/mutheme-settings.php:330
+#: functions/mutheme-settings.php:353
 msgid "成功开启插件。"
 msgstr ""
 
-#: functions/mutheme-settings.php:331
+#: functions/mutheme-settings.php:354
 #, php-format
 msgid "所有插件已成功安装并开启 %s。"
 msgstr ""
@@ -412,29 +412,33 @@ msgstr "更新时间："
 msgid "Latest comments"
 msgstr "最新评论"
 
-#: header.php:29
+#: functions/mutheme-widget.php:245
+msgid "Links"
+msgstr "友情链接"
+
+#: header.php:30
 msgid "Navigation"
 msgstr "导航"
 
-#: header.php:39
+#: header.php:40
 msgid "Categories"
 msgstr "分类"
 
-#: header.php:49
+#: header.php:50
 msgid "Pages"
 msgstr "页面"
 
-#: header.php:58
+#: header.php:59
 msgid "Tags"
 msgstr "标签"
 
-#: index.php:17
-msgid "Stick"
-msgstr "置顶"
-
-#: search.php:5
+#: header.php:89 search.php:5
 msgid "Search keyword"
 msgstr "搜索关键词"
+
+#: index.php:20
+msgid "Stick"
+msgstr "置顶"
 
 #: sidebar.php:3
 msgid "Please set up widgets at dashboard!"

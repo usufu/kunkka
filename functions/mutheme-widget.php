@@ -168,20 +168,18 @@ class Mutheme_widget_comment extends WP_Widget {
 	function widget( $args, $instance ) {
 		extract( $args );
 		$limit = strip_tags( $instance['limit'] );
-		$limit = $limit ? $limit : 10;
+		$limit = $limit ? $limit : 5;
 		?>
 		<div class="widget widget-comment">
 			<h3><?php _e( 'Latest comments', MUTHEME_NAME ); ?></h3>
-			<ul class="list">
+			<ul>
 				<?php
 				$comments = get_comments( "user_id=0&number={$limit}&status=approve&type=comment" );
 				foreach ( $comments as $comment ) { ?>
 					<li>
 						<p>
-							<a class="tooltipped tooltipped-n"
-							   href="<?php echo get_permalink( $comment->comment_post_ID ); ?>#comment-<?php echo $comment->comment_ID; ?>"
-							   aria-label="<?php echo strip_tags( $comment->comment_content ); ?>">
-								<?php echo mb_strimwidth( strip_tags( apply_filters( 'the_content', $comment->comment_content ) ), 0, 42, ".." ); ?>
+							<a href="<?php echo get_permalink( $comment->comment_post_ID ); ?>#comment-<?php echo $comment->comment_ID; ?>">
+								<?php echo $comment->comment_content; ?>
 							</a>
 						</p>
 
@@ -228,4 +226,63 @@ class Mutheme_widget_comment extends WP_Widget {
 add_action( 'widgets_init', 'Mutheme_widget_comment_init' );
 function Mutheme_widget_comment_init() {
 	register_widget( 'Mutheme_widget_comment' );
+}
+
+class Mutheme_widget_links extends WP_Widget {
+	function Mutheme_widget_links() {
+		$widget_ops = array( 'description' => 'Kunkka：友情链接' );
+		$this->WP_Widget( 'Mutheme_widget_links', 'Kunkka：友情链接', $widget_ops );
+	}
+
+	function widget( $args, $instance ) {
+		extract( $args );
+		$limit = strip_tags( $instance['limit'] );
+		$limit = $limit ? $limit : 10;
+		?>
+		<div class="widget widget-links">
+			<h3><?php _e( 'Links', MUTHEME_NAME ); ?></h3>
+			<ul>
+				<?php $bookmarks = get_bookmarks( 'limit=' . $limit );
+				if ( ! empty( $bookmarks ) ) {
+					foreach ( $bookmarks as $bookmark ) { ?>
+						<li>
+							<a class="tooltipped tooltipped-n" href="<?php echo $bookmark->link_url; ?>"
+							   aria-label="<?php echo $bookmark->link_description != '' ? $bookmark->link_description : $bookmark->link_name; ?>"><?php echo $bookmark->link_name; ?></a>
+						</li>
+					<?php
+					}
+				} ?></ul>
+			</ul>
+		</div>
+	<?php
+	}
+
+	function update( $new_instance, $old_instance ) {
+		if ( ! isset( $new_instance['submit'] ) ) {
+			return false;
+		}
+		$instance          = $old_instance;
+		$instance['limit'] = strip_tags( $new_instance['limit'] );
+
+		return $instance;
+	}
+
+	function form( $instance ) {
+		$instance = wp_parse_args( (array) $instance, array( 'limit' => '' ) );
+		$limit    = strip_tags( $instance['limit'] );
+		?>
+
+		<p><label for="<?php echo $this->get_field_id( 'limit' ); ?>">链接数量：<input
+					id="<?php echo $this->get_field_id( 'limit' ); ?>"
+					name="<?php echo $this->get_field_name( 'limit' ); ?>" type="text"
+					value="<?php echo $limit; ?>"/></label></p>
+		<input type="hidden" id="<?php echo $this->get_field_id( 'submit' ); ?>"
+		       name="<?php echo $this->get_field_name( 'submit' ); ?>" value="1"/>
+	<?php
+	}
+}
+
+add_action( 'widgets_init', 'Mutheme_widget_links_init' );
+function Mutheme_widget_links_init() {
+	register_widget( 'Mutheme_widget_links' );
 }
