@@ -201,7 +201,7 @@ function mutheme_time_since( $older_date, $comment_date = false ) {
 	$newer_date = time();
 	$since      = abs( $newer_date - $older_date );
 
-	if ( $since < 365 * 24 * 60 * 60 ) {
+	if ( $since < 30 * 24 * 60 * 60 ) {
 		for ( $i = 0, $j = count( $chunks ); $i < $j; $i ++ ) {
 			$seconds = $chunks[ $i ][0];
 			$name    = $chunks[ $i ][1];

@@ -12,7 +12,7 @@
  * Define constants
  */
 define( 'MUTHEME_NAME', 'Kunkka' );
-define( 'MUTHEME_VERSION', '1.0.3' );
+define( 'MUTHEME_VERSION', '1.0.4' );
 define( 'MUTHEME_PATH', dirname( __FILE__ ) );
 define( "MUTHEME_THEME_URL", get_bloginfo( 'template_directory' ) );
 
