@@ -112,7 +112,7 @@ function mutheme_comment( $comment, $args, $depth ) {
 add_filter( 'get_avatar', 'mutheme_avatar', 10, 3 );
 function mutheme_avatar( $avatar ) {
 	if ( ! is_admin() ) {
-		$avatar = str_replace( 'src=', 'src="' . mutheme_cdn( mutheme_image( 'placeholder.png' ) ) . '" data-original=', $avatar );
+		$avatar = str_replace( 'src=', 'src="' . mutheme_cdn( mutheme_image( 'placeholder.png' ), 120, 120 ) . '" data-original=', $avatar );
 	}
 
 	if ( mutheme_settings( 'avatar' ) == 1 ) {
