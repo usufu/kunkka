@@ -1,4 +1,10 @@
-# WordPress 移动主题 Kunkka
+Kunkka
+==========
+
+A simple wordpress theme with great performance on different devices.
+
+![Kunkka](https://raw.githubusercontent.com/iMuFeng/kunkka/master/screenshot.png "Kunkka")
+
 Copyright (c) 2016 mufeng.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
