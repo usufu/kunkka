@@ -15,7 +15,7 @@
 				<div class="post-meta">
 					<ul class="inline-ul">
 						<li class="inline-li">
-							<?php echo mutheme_time_since($post->post_date_gmt); ?>
+							<?php echo mutheme_time_since(strtotime($post->post_date_gmt)); ?>
 						</li>
 						<li class="inline-li">
 							<span class="post-span">·</span>

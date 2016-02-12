@@ -116,7 +116,7 @@ class Mutheme_widget_modified extends WP_Widget {
 
 						<p>
 							<?php _e( 'Update time：', MUTHEME_NAME ); ?>
-							<span><?php echo mutheme_time_since( abs( strtotime( $posts[ $index ]->post_modified_gmt ) ) ); ?></span>
+							<span><?php echo mutheme_time_since(strtotime($posts[$index]->post_modified_gmt)); ?></span>
 						</p>
 					</li>
 					<?php $index ++; endwhile;
@@ -186,7 +186,7 @@ class Mutheme_widget_comment extends WP_Widget {
 						<p>
 							<?php echo get_avatar( $comment->comment_author_email, 32 ); ?>
 							<?php echo $comment->comment_author; ?>
-							<span><?php echo mutheme_time_since(strtotime($comment->comment_date)); ?></span>
+							<span><?php echo mutheme_time_since(strtotime($comment->comment_date_gmt)); ?></span>
 						</p>
 					</li>
 				<?php
