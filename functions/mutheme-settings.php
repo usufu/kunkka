@@ -225,7 +225,6 @@ class Mutheme_settings {
 								'mutheme-shop',
 								'mutheme-user',
 								'mutheme-instagram',
-								'mutheme-shop',
 								'mutheme-music',
 								'mutheme-video',
 								'mutheme-apple',

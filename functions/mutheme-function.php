@@ -66,7 +66,7 @@ function mutheme_comment( $comment, $args, $depth ) {
 					echo "comment-author";
 				} ?>"><?php printf( '%s', get_comment_author_link() ) ?></span>
 				<span
-					class="comment-span comment-date"><?php echo mutheme_time_since( abs( strtotime( $comment->comment_date_gmt . "GMT" ) ), true ); ?></span>
+					class="comment-span comment-date"><?php echo mutheme_time_since(strtotime($comment->comment_date_gmt), true ); ?></span>
 			</div>
 			<div class="comment-text"><?php comment_text() ?></div>
 			<div class="comment-reply"><?php comment_reply_link( array_merge( $args, array(
@@ -98,7 +98,7 @@ function mutheme_comment( $comment, $args, $depth ) {
 					?>
 				</span>
 				<span
-					class="comment-span comment-date"><?php echo mutheme_time_since( abs( strtotime( $comment->comment_date_gmt . "GMT" ) ), true ); ?></span>
+					class="comment-span comment-date"><?php echo mutheme_time_since(strtotime($comment->comment_date_gmt), true ); ?></span>
 			</div>
 			<div class="comment-text">
 				<span class="comment-to"><a href="<?php echo "#comment-" . $parent_id; ?>"

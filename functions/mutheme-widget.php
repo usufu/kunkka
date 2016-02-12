@@ -186,7 +186,7 @@ class Mutheme_widget_comment extends WP_Widget {
 						<p>
 							<?php echo get_avatar( $comment->comment_author_email, 32 ); ?>
 							<?php echo $comment->comment_author; ?>
-							<span><?php echo mutheme_time_since( strtotime( $comment->comment_date . "GMT" ) ); ?></span>
+							<span><?php echo mutheme_time_since(strtotime($comment->comment_date)); ?></span>
 						</p>
 					</li>
 				<?php
