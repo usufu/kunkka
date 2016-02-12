@@ -13,19 +13,14 @@
  */
 function mutheme_head() {
 	?>
-	<?php if ( is_home() ) { ?><title><?php bloginfo( 'name' ); ?>
-		- <?php bloginfo( 'description' ); ?></title><?php } ?>
-	<?php if ( is_search() ) { ?><title><?php _e( 'Search&#34;', MUTHEME_NAME );
-		the_search_query();
-		echo "&#34;"; ?> - <?php bloginfo( 'name' ); ?></title><?php } ?>
-	<?php if ( is_single() ) { ?><title><?php echo trim( wp_title( '', 0 ) ); ?>
-		- <?php bloginfo( 'name' ); ?></title><?php } ?>
+	<?php if ( is_home() ) { ?><title><?php bloginfo( 'name' ); ?> - <?php bloginfo( 'description' ); ?></title><?php } ?>
+	<?php if ( is_search() ) { ?><title><?php _e( 'Search&#34;', MUTHEME_NAME );the_search_query();echo "&#34;"; ?> - <?php bloginfo( 'name' ); ?></title><?php } ?>
+	<?php if ( is_single() ) { ?><title><?php echo trim( wp_title( '', 0 ) ); ?> - <?php bloginfo( 'name' ); ?></title><?php } ?>
 	<?php if ( is_author() ) { ?><title><?php wp_title( "" ); ?> - <?php bloginfo( 'name' ); ?></title><?php } ?>
 	<?php if ( is_archive() ) { ?><title><?php single_cat_title(); ?> - <?php bloginfo( 'name' ); ?></title><?php } ?>
 	<?php if ( is_year() ) { ?><title><?php the_time( 'Y' ); ?> - <?php bloginfo( 'name' ); ?></title><?php } ?>
 	<?php if ( is_month() ) { ?><title><?php the_time( 'F' ); ?> - <?php bloginfo( 'name' ); ?></title><?php } ?>
-	<?php if ( is_page() ) { ?><title><?php echo trim( wp_title( '', 0 ) ); ?>
-		- <?php bloginfo( 'name' ); ?></title><?php } ?>
+	<?php if ( is_page() ) { ?><title><?php echo trim( wp_title( '', 0 ) ); ?> - <?php bloginfo( 'name' ); ?></title><?php } ?>
 	<?php if ( is_404() ) { ?><title>404 - <?php bloginfo( 'name' ); ?></title><?php } ?>
 	<?php
 	global $post;
@@ -323,10 +318,11 @@ function mutheme_thumbnail( $type = 'full', $width = 0, $height = 0 ) {
  * @param array|string $obj
  * @param int          $width
  * @param int          $height
+ * @param bool         $is_avatar
  *
  * @return string
  */
-function mutheme_cdn( $obj, $width = 0, $height = 0 ) {
+function mutheme_cdn( $obj, $width = 0, $height = 0, $is_avatar = false ) {
 	$url       = '';
 	$need_crop = true;
 	$cdn_type  = mutheme_settings( 'cdn' );
@@ -342,7 +338,7 @@ function mutheme_cdn( $obj, $width = 0, $height = 0 ) {
 
 	if ( $cdn_type == 0 ) {
 		//don't use any cdn services
-		if ( $need_crop ) {
+		if ( $need_crop && !$is_avatar) {
 			$url = sprintf( '%s&#63;src=%s&#38;w=%s&#38;h=%s&#38;zc=1&#38;q=100', mutheme_file_url( 'timthumb.php' ), urlencode( $url ), $width, $height );
 		}
 
